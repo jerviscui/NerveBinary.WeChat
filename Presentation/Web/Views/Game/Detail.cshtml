@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_GameDetailLayout.cshtml";
+}
+
+<img src="~/Images/ny_top.jpg" class="i-toppic" />
+<div class="i-inner">
+    <h3>2016年最能代表你的一个字？</h3>
+    <p class="i-decs">
+        2015年就要接近尾声了，你会以什么样的字来迎接2016年呢?
+    </p>
+    <input type="text" class="i-input" placeholder="请输入您的姓名" /><a href="javascript:;" class="i-submit">开始测试</a>
+    <p class="i-join">
+        有<em>18084</em>人参与
+    </p>
+</div>
+<script type="text/javascript">
+    $(".i-submit").on('click', function () {
+        var name = $(".i-input").val();
+        name = name.replace("?", " ");
+        if (name) {
+            window.location.href = "/result/" + name + "/newyear?t=" + new Date().getTime();
+        } else {
+            alert('请输入姓名');
+        }
+    });
+
+</script>
+
+
+
