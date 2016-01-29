@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model Web.Models.Game.SubjectResultModel
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -35,7 +37,7 @@
             <img src="~/Images/ny_meng.jpg" class="i-car" />
             @RenderBody()
             <ul class="i-result-btn clearfix">
-                <li><a href="@Url.Action("Index", "Game")" class="i-reset" stat="NameTestResultRe">我也要玩</a></li>
+                <li><a href="@Url.Action("Detail", "Game", new { subjectId = Model.SubjectId })" class="i-reset" stat="NameTestResultRe">我也要玩</a></li>
                 @*<li><a href="@Url.Action("Index", "Game")" class="i-share" stat="NameTestShare">更多好玩</a></li>*@
 
                 <li><a id="do" href="javascript:void(0);" class="i-share" stat="NameTestShare">分享出去</a></li>

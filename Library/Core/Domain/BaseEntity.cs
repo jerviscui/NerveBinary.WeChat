@@ -13,5 +13,10 @@ namespace Core.Domain
         public virtual byte[] Timespan { get; set; }
                
         public virtual bool IsValid { get; set; }
+
+        public BaseEntity()
+        {
+            IsValid = true;
+        }
     }
 }

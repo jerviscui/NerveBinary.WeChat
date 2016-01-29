@@ -1,4 +1,4 @@
-﻿@model List<string>
+﻿@model List<Web.Models.Game.SubjectInfoModel>
 
 @{
     Layout = null;
@@ -32,143 +32,71 @@
 
 <body app-name="test" app-mod="3">
     <div class="wnl-test-name">
-        <a href="javascript:void(0);">
-            <img src="~/Images/topbanner.jpeg" class="i-toppic" />
-        </a>
+        @if (Model.Count > 0)
+        {
+            <a href="@Url.Action("Detail", "Game", new { subjectId = Model[0].Id })">
+                <img src="@Model[0].PictureUrl" class="i-toppic" />
+            </a>
+        }
         <div class="i-morelist clearfix">
             <h4><span>大家都在玩</span></h4>
             <ul>
-                <li>
-                    <a stat="NameTestRelatedClick" href="start.php?type=newyear">
-                        <img src="~/Images/ny_top.jpg" />
-                        <span>2016年最能代表你的一个字？</span>
-                    </a>
-                </li>
+                @foreach (var item in Model.GetRange(1, Model.Count - 1))
+                {
+                    <li>
+                        <a href="@Url.Action("Detail", "Game", new { subjectId = item.Id })">
+                            <img src="@item.PictureUrl" />
+                            <span>@item.Title</span>
+                        </a>
+                    </li>
+                }
+                @*<li>
+                        <a stat="NameTestRelatedClick" href="start.php?type=newyear">
+                            <img src="~/Images/ny_top.jpg"/>
+                            <span>2016年最能代表你的一个字？</span>
+                        </a>
+                    </li>
 
-                <li>
-                    <a stat="NameTestRelatedClick" href="start.php?type=shenti">
-                        <img src="~/Images/ny_top.jpg" />
-                        <span>你的身体构造是？</span>
-                    </a>
-                </li>
+                    <li>
+                        <a stat="NameTestRelatedClick" href="start.php?type=shenti">
+                            <img src="~/Images/ny_top.jpg"/>
+                            <span>你的身体构造是？</span>
+                        </a>
+                    </li>
 
-                <li>
-                    <a stat="NameTestRelatedClick" href="start.php?type=pian">
-                        <img src="~/Images/ny_top.jpg" />
-                        <span>你的受骗指数有多高？</span>
-                    </a>
-                </li>
+                    <li>
+                        <a stat="NameTestRelatedClick" href="start.php?type=pian">
+                            <img src="~/Images/ny_top.jpg"/>
+                            <span>你的受骗指数有多高？</span>
+                        </a>
+                    </li>
 
-                <li>
-                    <a stat="NameTestRelatedClick" href="start.php?type=huaxin">
-                        <img src="~/Images/ny_top.jpg" />
-                        <span>测测你的花心指数</span>
-                    </a>
-                </li>
+                    <li>
+                        <a stat="NameTestRelatedClick" href="start.php?type=huaxin">
+                            <img src="~/Images/ny_top.jpg"/>
+                            <span>测测你的花心指数</span>
+                        </a>
+                    </li>
 
-                <li>
-                    <a stat="NameTestRelatedClick" href="start.php?type=ming">
-                        <img src="~/Images/ny_top.jpg" />
-                        <span>你命里缺什么？</span>
-                    </a>
-                </li>
+                    <li>
+                        <a stat="NameTestRelatedClick" href="start.php?type=ming">
+                            <img src="~/Images/ny_top.jpg"/>
+                            <span>你命里缺什么？</span>
+                        </a>
+                    </li>
 
-                <li>
-                    <a stat="NameTestRelatedClick" href="start.php?type=love">
-                        <img src="~/Images/ny_top.jpg" />
-                        <span>你被爱的五个理由是？</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a stat="NameTestRelatedClick" href="start.php?type=chugui">
-                        <img src="~/Images/ny_top.jpg" />
-                        <span>测测你的出轨指数？</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a stat="NameTestRelatedClick" href="start.php?type=ruodian">
-                        <img src="~/Images/ny_top.jpg" />
-                        <span>你的致命弱点是什么？</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a stat="NameTestRelatedClick" href="start.php?type=shieryue">
-                        <img src="~/Images/ny_top.jpg" />
-                        <span>你的十二月关键词是什么？</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a stat="NameTestRelatedClick" href="start.php?type=biye">
-                        <img src="~/Images/ny_top.jpg" />
-                        <span>你毕业后最适合做什么？</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a stat="NameTestRelatedClick" href="start.php?type=zhangxiang">
-                        <img src="~/Images/ny_top.jpg" />
-                        <span>我的长相容易让人？</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a stat="NameTestRelatedClick" href="start.php?type=lingyiban">
-                        <img src="~/Images/ny_top.jpg" />
-                        <span>你靠什么找到另一半？</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a stat="NameTestRelatedClick" href="start.php?type=mingyun">
-                        <img src="~/Images/ny_top.jpg" />
-                        <span>你的命运是？</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a stat="NameTestRelatedClick" href="start.php?type=zhuanqian">
-                        <img src="~/Images/ny_top.jpg" />
-                        <span>这辈子你能赚多少钱？</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a stat="NameTestRelatedClick" href="start.php?type=chifan">
-                        <img src="~/Images/ny_top.jpg" />
-                        <span>你这辈子靠什么吃饭？</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a stat="NameTestRelatedClick" href="start.php?type=kaiche">
-                        <img src="~/Images/ny_top.jpg" />
-                        <span>你的气质适合开什么车？</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a stat="NameTestRelatedClick" href="start.php?type=danshen">
-                        <img src="~/Images/ny_top.jpg" />
-                        <span>你还单身的原因是？</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a stat="NameTestRelatedClick" href="start.php?type=pengyou">
-                        <img src="~/Images/ny_top.jpg" />
-                        <span>你在朋友眼中是什么人？</span>
-                    </a>
-                </li>
-                <li>
-                    <a stat="NameTestRelatedClick" href="http://www.luochaowang.com/huiju/">
-                        <img src="~/Images/ny_top.jpg" />
-                        <span>精品美文</span>
-                    </a>
-                </li>
+                    <li>
+                        <a stat="NameTestRelatedClick" href="start.php?type=love">
+                            <img src="~/Images/ny_top.jpg"/>
+                            <span>你被爱的五个理由是？</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a stat="NameTestRelatedClick" href="http://www.luochaowang.com/huiju/">
+                            <img src="~/Images/ny_top.jpg"/>
+                            <span>精品美文</span>
+                        </a>
+                    </li>*@
             </ul>
         </div>
     </div>

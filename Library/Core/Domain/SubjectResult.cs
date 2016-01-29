@@ -8,14 +8,16 @@ namespace Core.Domain
 {
     public class SubjectResult : BaseEntity
     {
-        public virtual int ResultType { get; set; }
-        
-        public virtual string Content { get; set; }
+        public virtual string Key { get; set; }
 
-        public virtual int Order { get; set; }
-        
-        public virtual int PictureId { get; set; }
+        public virtual int SubjectId { get; set; }
 
-        public virtual Picture Picture { get; set; }
+        public virtual SubjectInfo Subject { get; set; }
+
+        public virtual int ResultPictureId { get; set; }
+
+        public virtual Picture ResultPicture { get; set; }
+        
+        public virtual ICollection<SubjectOption> Options { get; set; }
     }
 }

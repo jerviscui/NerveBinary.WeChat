@@ -1,12 +1,26 @@
-﻿
+﻿@model Web.Models.Game.SubjectResultModel
+
 @{
     ViewBag.Title = "Result";
     Layout = "~/Views/Shared/_GameResultLayout.cshtml";
 }
 
 <p class="i-result-desc">
-    <span>啊的2016关键字是</span>
-    <span>『猛』</span>
-    <span>你就像一个猛将、为了将来更好而累计努力的一年。</span>
+    <span>@Model.ResultTitle</span>
+    @if (Model.Options.Count == 1)
+    {
+        <span>@Model.Options[0].Content</span>
+        <span>@Model.Options[0].ContentExt</span>
+    }
+    else
+    {
+        <span></span>
+        <span>
+            @foreach (var item in Model.Options)
+            {
+                @Html.Raw(item.Content)<br/>
+            }
+        </span>
+    }
 </p>
 

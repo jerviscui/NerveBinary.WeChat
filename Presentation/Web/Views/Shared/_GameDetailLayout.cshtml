@@ -17,7 +17,8 @@
 
         <div class="i-morelist clearfix">
             <h4><span>有更多人在玩</span></h4>
-            <ul>
+            @Html.Action("HotGames", "Game")
+            @*<ul>
                 <li>
                     <a stat="NameTestRelatedClick" href="start.php?type=pengyou">
                         <img src="~/Images/ny_top.jpg" />
@@ -31,8 +32,7 @@
                         <span>测测你未来的身价</span>
                     </a>
                 </li>
-
-            </ul>
+            </ul>*@
         </div>
     </div>
     <div id="imgcode">

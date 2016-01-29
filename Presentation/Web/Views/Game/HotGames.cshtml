@@ -1,0 +1,14 @@
+﻿@model List<Web.Models.Game.SubjectInfoModel>
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>
+            <a href="@Url.Action("Detail", "Game", new { subjectId = item.Id })">
+            <img src="@item.PictureUrl" />
+            <span>@item.Title</span>
+            </a>
+        </li>
+    }
+</ul>
+

@@ -42,6 +42,7 @@
     <Compile Include="Domain\BaseEntity.cs" />
     <Compile Include="Domain\Picture.cs" />
     <Compile Include="Domain\SubjectInfo.cs" />
+    <Compile Include="Domain\SubjectOption.cs" />
     <Compile Include="Domain\SubjectResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -21,6 +21,11 @@ namespace Core.Domain
         public virtual int PictureId { get; set; }
 
         public virtual Picture Picture { get; set; }
-        
+
+        public virtual int ResultPictureId { get; set; }
+
+        public virtual Picture ResultPicture { get; set; }
+
+        public virtual ICollection<SubjectOption> Options { get; set; }
     }
 }
