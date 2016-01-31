@@ -1,8 +1,19 @@
-﻿
+﻿@using Kendo.Mvc.UI.Fluent
+@model Web.Areas.Admin.Models.PageModel<Web.Areas.Admin.Models.Home.SubjectInfoModel>
+
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
 
-@Html.Kendo().DatePicker().Name("test")
+@(Html.Kendo().Grid(Model.Data).Name("grid")
+        .Columns(columns =>
+        {
+            columns.Bound(o => o.Id);
+            columns.Bound(o => o.Title);
+            columns.Bound(o => o.Order);
+            columns.Bound(o => o.PictureUrl).Template(o => "<img src='" + o.PictureUrl + "'/>").ClientTemplate("<img src='#:PictureUrl#'/>");
+        })
+        .Pageable(pageable => pageable.Refresh(true).PageSizes(true).ButtonCount(5))
+        .DataSource(dataSource => dataSource.Ajax().Read(read => read.Action("Customers_Read", "Grid")).PageSize(20)))

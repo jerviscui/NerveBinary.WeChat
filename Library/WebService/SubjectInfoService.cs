@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Core;
 using Core.Domain;
 using DataService;
 
@@ -23,7 +24,15 @@ namespace WebService
         {
             return _subjectInfoRepository.Table.Where(o => o.IsValid).OrderByDescending(o => o.Order).Take(count).ToList();
         }
-        
+
+        public IPagedList<SubjectInfo> GetList(int pageIndex, int pageSize)
+        {
+            var query = _subjectInfoRepository.Table.Where(o => o.IsValid);
+            query = query.OrderByDescending(o => o.Order);
+            
+            return new PagedList<SubjectInfo>(query, pageIndex, pageSize);
+        }
+
         public SubjectInfo GetSubjectById(int subjectId)
         {
             return _subjectInfoRepository.Table.FirstOrDefault(o => o.IsValid && o.Id == subjectId);

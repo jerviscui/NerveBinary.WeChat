@@ -44,6 +44,8 @@
     <Compile Include="Domain\SubjectInfo.cs" />
     <Compile Include="Domain\SubjectOption.cs" />
     <Compile Include="Domain\SubjectResult.cs" />
+    <Compile Include="IPagedList.cs" />
+    <Compile Include="PagedList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

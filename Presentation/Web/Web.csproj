@@ -1171,7 +1171,9 @@
     <Content Include="Upload\Game\02.jpg" />
     <Content Include="Upload\Game\03.jpg" />
     <Content Include="Upload\Game\04.jpg" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Shared\_GameResultLayout.cshtml" />
     <Content Include="Views\Game\Result.cshtml" />
     <Content Include="Views\Game\Detail.cshtml" />
@@ -1187,6 +1189,11 @@
     <Compile Include="Areas\Admin\Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Areas\Admin\Models\Account\LoginModel.cs" />
     <Compile Include="Areas\Admin\Models\Account\RegisterModel.cs" />
+    <Compile Include="Areas\Admin\Models\BaseAdminModel.cs" />
+    <Compile Include="Areas\Admin\Models\Home\SubjectInfoModel.cs" />
+    <Compile Include="Areas\Admin\Models\Home\SubjectOptionModel.cs" />
+    <Compile Include="Areas\Admin\Models\Home\SubjectResultModel.cs" />
+    <Compile Include="Areas\Admin\Models\PageModel.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
