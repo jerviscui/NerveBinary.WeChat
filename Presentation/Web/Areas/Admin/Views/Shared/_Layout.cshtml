@@ -27,7 +27,7 @@
                 {
                     <a class="navbar-brand" href="javascript:void(0);">@User.Identity.Name</a>
                     using (Html.BeginForm("LogOff", "Account", new { area = "Admin" }, FormMethod.Post,
-                        new { style = "display: inline-block;" }))
+                        new { style = "display: flex;" }))
                     {
                         @Html.AntiForgeryToken()
                         <input type="submit" value="退出" style="margin-top: 10px;" />
