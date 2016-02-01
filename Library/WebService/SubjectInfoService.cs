@@ -29,13 +29,22 @@ namespace WebService
         {
             var query = _subjectInfoRepository.Table.Where(o => o.IsValid);
             query = query.OrderByDescending(o => o.Order);
-            
+
             return new PagedList<SubjectInfo>(query, pageIndex, pageSize);
         }
 
         public SubjectInfo GetSubjectById(int subjectId)
         {
             return _subjectInfoRepository.Table.FirstOrDefault(o => o.IsValid && o.Id == subjectId);
+        }
+
+        public void Hide(int subjectId)
+        {
+            var model = GetSubjectById(subjectId);
+            if (model != null)
+            {
+                _subjectInfoRepository.Hide(model);
+            }
         }
 
         public void Delete(int subjectId)

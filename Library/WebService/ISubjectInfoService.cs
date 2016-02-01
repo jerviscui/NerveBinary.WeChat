@@ -15,5 +15,7 @@ namespace WebService
         IPagedList<SubjectInfo> GetList(int pageIndex, int pageSize);
 
         SubjectInfo GetSubjectById(int subjectId);
+
+        void Hide(int subjectId);
     }
 }

@@ -14,7 +14,8 @@ namespace Web.Areas.Admin
         {
             CreateMap<SubjectInfo, SubjectInfoModel>()
                 .ForMember(o => o.PictureUrl, opt => opt.MapFrom(source => GetGameImg(source.Picture.Url)))
-                .ForMember(o => o.ResultPictureUrl, opt => opt.MapFrom(source => GetGameImg(source.ResultPicture.Url)));
+                .ForMember(o => o.ResultPictureUrl, opt => opt.MapFrom(source => GetGameImg(source.ResultPicture.Url)))
+                .ForMember(o => o.Options, opt => opt.Ignore());
 
             CreateMap<SubjectOption, SubjectOptionModel>();
         }

@@ -34,6 +34,11 @@ namespace Web.Infrastructure
             return Mapper.Map<SubjectOption, SubjectOptionModel>(entity);
         }
 
+        public static Areas.Admin.Models.Home.SubjectOptionModel ToAdminModel(this SubjectOption entity)
+        {
+            return Mapper.Map<SubjectOption, Areas.Admin.Models.Home.SubjectOptionModel>(entity);
+        }
+
         public static SubjectResultModel ToModel(this SubjectResult entity)
         {
             return Mapper.Map<SubjectResult, SubjectResultModel>(entity);

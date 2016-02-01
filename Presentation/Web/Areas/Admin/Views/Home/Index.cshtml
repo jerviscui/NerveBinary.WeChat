@@ -22,25 +22,47 @@
               .ClientTemplate("<img src='#:ResultPictureUrl#' class='customer-photo'/>");
           columns.Command(command =>
           {
-              command.Edit();
               command.Custom("editGame").Click("editGame").Text("编辑");
               command.Destroy();
-          }).Title("Command");
+          }).Title("Command").Width(200);
       })
-      .Pageable(pageable => pageable.Refresh(true).PageSizes(new[] { 10 }).ButtonCount(10))
+      .ClientDetailTemplateId("template")
+      .Pageable(pageable => pageable.Refresh(true).PageSizes(new[] { Model.PageSize }).ButtonCount(10))
       .DataSource(dataSource => dataSource.Ajax().Model(desc => desc.Id(o => o.Id)).PageSize(Model.PageSize).Total(Model.Total)
           .Read(read => read.Action("GridGet", "Home"))
-              .Update(read => read.Action("GridGet", "Home"))
-          .Destroy(delete => delete.Action("Hide", "Home"))))
+          .Destroy(delete => delete.Action("Hide", "Home", new { PageSize = Model.PageSize })))
+      .Events(events => events.DataBound("dataBound")))
 
 <script type="text/javascript">
     function editGame(e) {
         e.preventDefault();
 
         var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-        var url = decodeURIComponent("@Url.Action("EditGame", "Home", new { subjectId = "{subjectId}" })");
+        var url = decodeURIComponent("@Url.Action("EditGame", "Home", new {subjectId = "{subjectId}"})");
         window.location.href = url.replace("{subjectId}", dataItem.Id);
     }
+
+    function dataBound() {
+        this.expandRow(this.tbody.find("tr.k-master-row").first());
+    }
+</script>
+
+<script id="template" type="text/kendo-tmpl">
+    @(Html.Kendo().Grid<SubjectOptionModel>()
+        .Name("grid_#=Id#") // template expression, to be evaluated in the master context
+        .Columns(columns =>
+        {
+            columns.Bound(o => o.ResultType);
+            columns.Bound(o => o.Content);
+            columns.Bound(o => o.ContentExt);
+            columns.Bound(o => o.Order);
+        })
+        .Pageable(pageable => pageable.Refresh(true).ButtonCount(10))
+        .DataSource(datasource => datasource.Ajax().PageSize(5)
+            .Group(group => group.Add(o => o.ResultType))
+            .Read(read => read.Action("GetOptions", "Home", new { subjectId = "#=Id#" })))
+        //.Groupable(group => group.Enabled(true))
+        .ToClientTemplate())
 </script>
 
 <style>

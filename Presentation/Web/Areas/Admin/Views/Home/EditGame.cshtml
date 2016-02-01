@@ -5,23 +5,57 @@
 }
 
 <div>
-    <a href="@Url.Action("Index", "Home")">返回列表</a>
-    @*<a href="@Url.Action("NewGame", "Home")" class="k-button" style="margin: 10px;">保存</a>*@
+    <a href="@Url.Action("Index", "Home")" class="k-toggle-button k-button k-button-icontext k-group-start" style="margin: 10px;">
+        <span class="k-sprite k-tool-icon k-justifyLeft" style="vertical-align: top;"></span>
+        返回列表
+    </a>
 </div>
-<hr/>
 
+
+
+<hr />
+<h4>题目信息：</h4>
 @using (Html.BeginForm())
 {
-    Html.HiddenFor(model => model.Id);
-    Html.Kendo().TextBoxFor(model => model.Title);
-    Html.Kendo().TextBoxFor(model => model.Description);
-    Html.Kendo().TextBoxFor(model => model.ResultTitle);
-    Html.Kendo().TextBoxFor(model => model.AdditionNum);
-    Html.Kendo().EditorFor(model => model.PictureUrl);
-    Html.Kendo().EditorFor(model => model.ResultPictureUrl);
-    Html.Kendo().TextBoxFor(model => model.Order);
+    @Html.HiddenFor(model => model.Id)
+    <ul id="fieldlist">
+        <li>
+            @Html.LabelFor(model => model.Title)
+            @Html.Kendo().TextBoxFor(model => model.Title)
+        </li>
+        <li>
+            @Html.LabelFor(model => model.Description)
+            @Html.Kendo().TextBoxFor(model => model.Description)
+        </li>
+        <li>
+            @Html.LabelFor(model => model.ResultTitle)
+            @Html.Kendo().TextBoxFor(model => model.ResultTitle)
+        </li>
+        <li>
+            @Html.LabelFor(model => model.AdditionNum)
+            @Html.Kendo().TextBoxFor(model => model.AdditionNum)
+        </li>
+        <li>
+            @Html.LabelFor(model => model.PictureUrl)
+            @Html.Kendo().TextBoxFor(model => model.PictureUrl)
+        </li>
+        <li>
+            @Html.LabelFor(model => model.ResultPictureUrl)
+            @Html.Kendo().TextBoxFor(model => model.ResultPictureUrl)
+        </li>
+        <li>
+            @Html.LabelFor(model => model.Order)
+            @Html.Kendo().TextBoxFor(model => model.Order)
+        </li>
+    </ul>
+
+    <div>
+        @(Html.Kendo().Button().Name("textButton").HtmlAttributes(new { type = "submit", @class = "k-primary" }).Content("保存"))
+    </div>
 }
 
+<hr />
+<h4>题目选项：</h4>
 @(Html.Kendo().Grid(Model.Options).Name("subjectOptions")
     .Columns(column =>
     {
@@ -30,5 +64,78 @@
         column.Bound(o => o.ContentExt);
         column.Bound(o => o.Order);
     }))
-    
 
+
+<style type="text/css">
+    h4 {
+        margin-bottom: 1em;
+        font-size: 20px;
+        color: black;
+        line-height: 1em;
+        font-weight: bold;
+        text-transform: uppercase;
+        font: 400 20px Arial, Helvetica, sans-serif;
+    }
+
+    #fieldlist {
+        margin: 0;
+        padding: 0;
+    }
+
+        #fieldlist li {
+            list-style: none;
+            padding-bottom: .7em;
+            text-align: left;
+        }
+
+        #fieldlist label {
+            display: block;
+            padding-bottom: .3em;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 12px;
+            color: #444;
+        }
+
+        #fieldlist li.status {
+            text-align: center;
+        }
+
+        #fieldlist li .k-widget:not(.k-tooltip),
+        #fieldlist li .k-textbox {
+            margin: 0 5px 5px 0;
+        }
+
+    .confirm {
+        padding-top: 1em;
+    }
+
+    .valid {
+        color: green;
+    }
+
+    .invalid {
+        color: red;
+    }
+
+    #fieldlist li input[type="checkbox"] {
+        margin: 0 5px 0 0;
+    }
+
+    span.k-widget.k-tooltip-validation {
+        display;
+        inline-block;
+        width: 160px;
+        text-align: left;
+        border: 0;
+        padding: 0;
+        margin: 0;
+        background: none;
+        box-shadow: none;
+        color: red;
+    }
+
+    .k-tooltip-validation .k-warning {
+        display: none;
+    }
+</style>

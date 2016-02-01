@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Core;
 using Core.Domain;
 using DataService;
 
@@ -15,6 +16,14 @@ namespace WebService
         public SubjectOptionService(IRepository<SubjectOption> subjectOptionRepository)
         {
             _subjectOptionRepository = subjectOptionRepository;
+        }
+
+        public IPagedList<SubjectOption> GetOptions(int subjectId, int pageIndex, int pageSize)
+        {
+            var query = _subjectOptionRepository.Table.Where(o => o.SubjectId == subjectId && o.IsValid);
+            query = query.OrderBy(o => o.ResultType).ThenByDescending(o => o.Order);
+
+            return new PagedList<SubjectOption>(query, pageIndex, pageSize);
         }
     }
 }
