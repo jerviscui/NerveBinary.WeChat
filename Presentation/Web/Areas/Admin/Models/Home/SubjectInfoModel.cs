@@ -15,6 +15,10 @@ namespace Web.Areas.Admin.Models.Home
         public string Description { get; set; }
                
         public int Order { get; set; }
+
+        public int AdditionNum { get; set; }
+
+        public string ResultTitle { get; set; }
                
         public string PictureUrl { get; set; }
 

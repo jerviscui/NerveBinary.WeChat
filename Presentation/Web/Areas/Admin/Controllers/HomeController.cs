@@ -24,6 +24,7 @@ namespace Web.Areas.Admin.Controllers
             _subjecinfoInfoService = subjecinfoInfoService;
         }
 
+        [AllowAnonymous]
         // GET: Admin/Home
         public ActionResult Index(int pageIndex = 0, int pageSize = 10)
         {
@@ -60,6 +61,17 @@ namespace Web.Areas.Admin.Controllers
 
         [HttpPost]
         public ActionResult NewGame(SubjectInfoModel model)
+        {
+            return View();
+        }
+
+        public ActionResult EditGame(int subjectId)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult EditGame(SubjectInfoModel model)
         {
             return View();
         }

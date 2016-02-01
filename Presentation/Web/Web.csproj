@@ -591,6 +591,7 @@
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Areas\Admin\Views\Home\NewGame.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\EditGame.cshtml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1188,6 +1189,7 @@
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminBaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\InitAccountController.cs" />
     <Compile Include="Areas\Admin\Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Areas\Admin\Models\Account\LoginModel.cs" />
     <Compile Include="Areas\Admin\Models\Account\RegisterModel.cs" />

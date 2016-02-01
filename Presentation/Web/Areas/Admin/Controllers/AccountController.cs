@@ -6,7 +6,6 @@ using WebMatrix.WebData;
 
 namespace Web.Areas.Admin.Controllers
 {
-    [InitializeSimpleMembership]
     public class AccountController : AdminBaseController
     {
         //
@@ -41,6 +40,7 @@ namespace Web.Areas.Admin.Controllers
         // POST: /Account/LogOff
 
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {

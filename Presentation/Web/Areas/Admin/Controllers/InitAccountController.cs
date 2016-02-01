@@ -7,10 +7,8 @@ using ProductStore.Filters;
 
 namespace Web.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Administrator")]
     [InitializeSimpleMembership]
-    public class AdminBaseController : Controller
+    public class InitAccountController : Controller
     {
-
     }
 }

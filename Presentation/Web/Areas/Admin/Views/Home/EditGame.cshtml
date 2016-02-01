@@ -1,0 +1,34 @@
+﻿@model Web.Areas.Admin.Models.Home.SubjectInfoModel
+
+@{
+    ViewBag.Title = "EditGame";
+}
+
+<div>
+    <a href="@Url.Action("Index", "Home")">返回列表</a>
+    @*<a href="@Url.Action("NewGame", "Home")" class="k-button" style="margin: 10px;">保存</a>*@
+</div>
+<hr/>
+
+@using (Html.BeginForm())
+{
+    Html.HiddenFor(model => model.Id);
+    Html.Kendo().TextBoxFor(model => model.Title);
+    Html.Kendo().TextBoxFor(model => model.Description);
+    Html.Kendo().TextBoxFor(model => model.ResultTitle);
+    Html.Kendo().TextBoxFor(model => model.AdditionNum);
+    Html.Kendo().EditorFor(model => model.PictureUrl);
+    Html.Kendo().EditorFor(model => model.ResultPictureUrl);
+    Html.Kendo().TextBoxFor(model => model.Order);
+}
+
+@(Html.Kendo().Grid(Model.Options).Name("subjectOptions")
+    .Columns(column =>
+    {
+        column.Bound(o => o.ResultType);
+        column.Bound(o => o.Content);
+        column.Bound(o => o.ContentExt);
+        column.Bound(o => o.Order);
+    }))
+    
+
