@@ -5,15 +5,51 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div>
+    <a href="@Url.Action("NewGame", "Home")" class="k-button" style="margin: 10px;">新增题目</a>
+</div>
 
 @(Html.Kendo().Grid(Model.Data).Name("grid")
-        .Columns(columns =>
-        {
-            columns.Bound(o => o.Id);
-            columns.Bound(o => o.Title);
-            columns.Bound(o => o.Order);
-            columns.Bound(o => o.PictureUrl).Template(o => "<img src='" + o.PictureUrl + "'/>").ClientTemplate("<img src='#:PictureUrl#'/>");
-        })
-        .Pageable(pageable => pageable.Refresh(true).PageSizes(true).ButtonCount(5))
-        .DataSource(dataSource => dataSource.Ajax().Read(read => read.Action("Customers_Read", "Grid")).PageSize(20)))
+      .Columns(columns =>
+      {
+          columns.Bound(o => o.Id);
+          columns.Bound(o => o.Title);
+          columns.Bound(o => o.Order);
+          columns.Bound(o => o.PictureUrl).Template(o => "<img src='" + o.PictureUrl + "' class='customer-photo'/>")
+              .ClientTemplate("<img src='#:PictureUrl#' class='customer-photo'/>");
+          columns.Bound(o => o.ResultPictureUrl).Template(o => "<img src='" + o.ResultPictureUrl + "' class='customer-photo'/>")
+              .ClientTemplate("<img src='#:ResultPictureUrl#' class='customer-photo'/>");
+          columns.Command(command =>
+          {
+              command.Edit();
+              command.Destroy();
+          }).Title("Command");
+      })
+      .Pageable(pageable => pageable.Refresh(true).PageSizes(new[] { 10 }).ButtonCount(10))
+      .DataSource(dataSource => dataSource.Ajax().Model(desc => desc.Id(o => o.Id)).PageSize(Model.PageSize)
+          .Read(read => read.Action("GridGet", "Home"))
+          .Update(update => update.Action("Update", "Home"))
+          .Destroy(delete => delete.Action("Hide", "Home"))))
+
+
+<style>
+    .customer-photo {
+        display: inline-block;
+        /*width: 32px;*/
+        height: 32px;
+        /*border-radius: 50%;
+        background-size: 32px 35px;*/
+        background-position: center center;
+        vertical-align: middle;
+        line-height: 32px;
+        box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0,0,0,.2);
+        margin-left: 5px;
+    }
+
+    .customer-name {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 32px;
+        padding-left: 3px;
+    }
+</style>

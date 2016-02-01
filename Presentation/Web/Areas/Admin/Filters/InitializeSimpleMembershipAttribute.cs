@@ -26,7 +26,7 @@ namespace ProductStore.Filters
         {
             public SimpleMembershipInitializer()
             {
-                Database.SetInitializer<EFDbContext>(null);
+                //Database.SetInitializer<EFDbContext>(null);
 
                 //Database.SetInitializer<UsersContext>(new DropCreateDatabaseIfModelChanges<UsersContext>());
 

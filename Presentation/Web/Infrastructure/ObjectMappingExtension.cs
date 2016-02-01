@@ -12,9 +12,21 @@ namespace Web.Infrastructure
 {
     public static class ObjectMappingExtension
     {
+        private static readonly IMapper Mapper;
+
+        static ObjectMappingExtension()
+        {
+            Mapper = ObjectMapper.ConfigMapper().CreateMapper();
+        }
+
         public static SubjectInfoModel ToModel(this SubjectInfo entity)
         {
             return Mapper.Map<SubjectInfo, SubjectInfoModel>(entity);
+        }
+
+        public static Areas.Admin.Models.Home.SubjectInfoModel ToAdminModel(this SubjectInfo entity)
+        {
+            return Mapper.Map<SubjectInfo, Areas.Admin.Models.Home.SubjectInfoModel>(entity);
         }
 
         public static SubjectOptionModel ToModel(this SubjectOption entity)

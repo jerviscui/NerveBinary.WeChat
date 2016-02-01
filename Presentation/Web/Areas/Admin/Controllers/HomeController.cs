@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Core;
 using Core.Domain;
 using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
 using Web.Areas.Admin.Models;
 using Web.Areas.Admin.Models.Home;
 using Web.Infrastructure;
@@ -32,14 +33,35 @@ namespace Web.Areas.Admin.Controllers
             if (list != null)
             {
                 data = list.ToModel<SubjectInfo, SubjectInfoModel>();
-                data.Data.AddRange(list.Select(o => new SubjectInfoModel()
-                {
-                    Description = o.Description, Id = o.Id, Order = o.Order, PictureId = o.PictureId, PictureUrl = o.Picture.Url,
-                    ResultPictureId = o.ResultPictureId, ResultPictureUrl = o.ResultPicture.Url
-                }));
+                data.Data.AddRange(list.Select(o => o.ToAdminModel()));
             }
 
             return View(data);
+        }
+
+        public ActionResult GridGet([DataSourceRequest]DataSourceRequest request)
+        {
+            var data = new PageModel<SubjectInfoModel>();
+            var list = _subjecinfoInfoService.GetList(request.Page - 1, request.PageSize);
+
+            if (list != null)
+            {
+                data = list.ToModel<SubjectInfo, SubjectInfoModel>();
+                data.Data.AddRange(list.Select(o => o.ToAdminModel()));
+            }
+
+            return new JsonResult() { Data = data };
+        }
+
+        public ActionResult NewGame()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult NewGame(SubjectInfoModel model)
+        {
+            return View();
         }
     }
 }

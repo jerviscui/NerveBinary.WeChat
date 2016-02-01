@@ -25,7 +25,6 @@ namespace Web
             BundleConfig.Config(BundleTable.Bundles);
 
             DependencyRegister.Register();
-            ObjectMapper.ConfigMapper();
 
             //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<EFDbContext>());
         }

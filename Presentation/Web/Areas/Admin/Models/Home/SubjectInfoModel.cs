@@ -1,8 +1,15 @@
 ﻿
+using System.Collections.Generic;
+
 namespace Web.Areas.Admin.Models.Home
 {
     public class SubjectInfoModel : BaseAdminModel
     {
+        public SubjectInfoModel()
+        {
+            Options = new List<SubjectOptionModel>();
+        }
+
         public string Title { get; set; }
                
         public string Description { get; set; }
@@ -16,5 +23,7 @@ namespace Web.Areas.Admin.Models.Home
         public string ResultPictureUrl { get; set; }
 
         public int ResultPictureId { get; set; }
+
+        public IList<SubjectOptionModel> Options { get; set; }
     }
 }
