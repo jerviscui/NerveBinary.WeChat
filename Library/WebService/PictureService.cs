@@ -16,5 +16,10 @@ namespace WebService
         {
             _pictureRepository = pictureRepository;
         }
+
+        public void DeletePicture(Picture picture)
+        {
+            _pictureRepository.Delete(picture);
+        }
     }
 }
