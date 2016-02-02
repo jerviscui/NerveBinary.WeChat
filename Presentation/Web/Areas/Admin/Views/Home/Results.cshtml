@@ -1,0 +1,77 @@
+﻿@using Microsoft.Ajax.Utilities
+@model Web.Areas.Admin.Models.PageModel<Web.Areas.Admin.Models.Home.SubjectResultModel>
+@{
+    ViewBag.Title = "参与人员";
+}
+
+<div>
+    <a href="@Url.Action("Index", "Home")" class="k-toggle-button k-button k-button-icontext k-group-start" style="margin: 10px;">
+        <span class="k-sprite k-tool-icon k-justifyLeft" style="vertical-align: top;"></span>
+        返回列表
+    </a>
+</div>
+
+@(Html.Kendo().Grid(Model.Data).Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(o => o.SubjectId);
+        columns.Bound(o => o.Key);
+        columns.Bound(o => o.Options).Template(o =>
+        {
+            string str = "";
+            str += "<ul>";
+            foreach (var item in o.Options)
+            {
+                str += "<li>";
+                str += item.Content + "  " + item.ContentExt;
+                str += "</li>";
+            }
+            str += "</ul>";
+
+            return str;
+        }).ClientTemplate("<ul>#=clientTemplate(this, Options)#</ul>");
+        columns.Bound(o => o.ResultPictureUrl).Template(o => "<img src='" + o.ResultPictureUrl + "' class='customer-photo'/>")
+            .ClientTemplate("<img src='#:ResultPictureUrl#' class='customer-photo'/>");
+        columns.Bound(o => o.CreateOnUtc).Format("{0:yyyy-MM-dd HH:mm:ss}");
+    })
+    .Pageable(pageable => pageable.Refresh(true).PageSizes(new[] { Model.PageSize }).ButtonCount(10))
+    .DataSource(dataSource => dataSource.Ajax().Model(desc =>
+    {
+        desc.Id(o => o.Id);
+        desc.Field(o => o.SubjectId).DefaultValue("#=SubjectId#");
+    }).PageSize(Model.PageSize).Total(Model.Total)
+    .Read(read => read.Action("GetResults", "Home", new { PageSize = Model.PageSize, subjectId = ViewBag.SubjectId }))))
+
+<script type="text/javascript">
+    function clientTemplate(element, data) {
+        var str = "";
+
+        $.each(data, function(index, item) {
+            str = str + "<li>" + item.Content + "  " + (item.ContentExt || "") + "</li>";
+        });
+
+        return str;
+    }
+</script>
+
+<style>
+    .customer-photo {
+        display: inline-block;
+        /*width: 32px;*/
+        height: 50px;
+        /*border-radius: 50%;
+        background-size: 32px 35px;*/
+        background-position: center center;
+        vertical-align: middle;
+        line-height: 32px;
+        box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0,0,0,.2);
+        margin-left: 5px;
+    }
+
+    .customer-name {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 32px;
+        padding-left: 3px;
+    }
+</style>

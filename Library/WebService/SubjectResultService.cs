@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Core;
 using Core.Domain;
 using DataService;
 
@@ -31,5 +32,13 @@ namespace WebService
         {
             return _subjectResultRepository.Table.FirstOrDefault(o => o.SubjectId == subjectId && o.Key.Equals(key) && o.IsValid);
         }
+
+        public IPagedList<SubjectResult> GetResults(int subjectId, int pageIndex, int pageSize)
+        {
+            var query = _subjectResultRepository.Table.Where(o => o.SubjectId == subjectId && o.IsValid);
+            query = query.OrderByDescending(o => o.CreateOnUtc);
+
+            return new PagedList<SubjectResult>(query, pageIndex, pageSize);
+        } 
     }
 }

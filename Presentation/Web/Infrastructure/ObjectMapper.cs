@@ -38,7 +38,8 @@ namespace Web.Infrastructure
                     .ForMember(o => o.PictureUrl, opt => opt.MapFrom(source => GetGameImg(source.Picture.Url)));
                 configuration.CreateMap<SubjectOption, SubjectOptionModel>();
                 configuration.CreateMap<SubjectResult, SubjectResultModel>()
-                    .ForMember(o => o.PictureUrl, opt => opt.MapFrom(source => GetGameImg(source.ResultPicture.Url)));
+                    .ForMember(o => o.PictureUrl, opt => opt.MapFrom(source => GetGameImg(source.ResultPicture.Url)))
+                    .ForMember(o => o.CreateOnUtc, opt => opt.MapFrom(source => source.CreateOnUtc.ToLocalTime()));
 
                 configuration.AddProfile<AdminObjectProfile>();
             });

@@ -18,6 +18,13 @@ namespace Web.Areas.Admin
                 .ForMember(o => o.Options, opt => opt.Ignore());
 
             CreateMap<SubjectOption, SubjectOptionModel>();
+
+            CreateMap<SubjectResult, SubjectResultModel>()
+                .ForMember(o => o.ResultPictureUrl, opt => opt.MapFrom(source => GetGameImg(source.ResultPicture.Url)))
+                .ForMember(o => o.CreateOnUtc, opt => opt.MapFrom(source => source.CreateOnUtc.ToLocalTime()));
+
+            CreateMap<SubjectInfoModel, SubjectInfo>();
+            CreateMap<SubjectOptionModel, SubjectOption>();
         }
 
         private static string GetGameImg(string relative)

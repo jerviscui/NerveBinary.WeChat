@@ -17,5 +17,9 @@ namespace WebService
         SubjectInfo GetSubjectById(int subjectId);
 
         void Hide(int subjectId);
+
+        void Update(SubjectInfo model);
+
+        void Create(SubjectInfo model);
     }
 }

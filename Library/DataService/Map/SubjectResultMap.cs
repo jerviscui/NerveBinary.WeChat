@@ -18,6 +18,7 @@ namespace DataService.Map
                 configuration.ToTable("ResultOptionMapping").MapLeftKey("ResultId").MapRightKey("OptionId"));
 
             this.Property(o => o.Key).IsRequired().HasMaxLength(10).IsVariableLength();
+            this.Property(o => o.CreateOnUtc).IsRequired();
         }
     }
 }

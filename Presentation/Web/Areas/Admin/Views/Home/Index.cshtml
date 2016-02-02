@@ -24,7 +24,10 @@
           {
               command.Custom("editGame").Click("editGame").Text("编辑");
               command.Destroy();
-          }).Title("Command").Width(200);
+          }).Title("Command").Width(170);
+          columns.Bound(o => o).Template(o => "<a href='" + Url.Action("Results", "Home", new { subjectId = o.Id }) + "' class='k-button'>参与人员</a>")
+              .ClientTemplate("<a href='" + Url.Action("Results", "Home", new { subjectId = "#=Id#" }) + "' class='k-button'>参与人员</a>")
+              .Title("").Width(110);
       })
       .ClientDetailTemplateId("template")
       .Pageable(pageable => pageable.Refresh(true).PageSizes(new[] { Model.PageSize }).ButtonCount(10))
@@ -69,7 +72,7 @@
     .customer-photo {
         display: inline-block;
         /*width: 32px;*/
-        height: 32px;
+        height: 50px;
         /*border-radius: 50%;
         background-size: 32px 35px;*/
         background-position: center center;

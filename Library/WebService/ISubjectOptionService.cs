@@ -11,5 +11,13 @@ namespace WebService
     public interface ISubjectOptionService
     {
         IPagedList<SubjectOption> GetOptions(int subjectId, int pageIndex, int pageSize);
+
+        void UpdateOption(SubjectOption model);
+
+        SubjectOption GetOptionById(int optionId);
+
+        void Hide(SubjectOption model);
+
+        void CreateOption(SubjectOption model);
     }
 }

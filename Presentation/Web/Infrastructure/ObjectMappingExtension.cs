@@ -29,6 +29,11 @@ namespace Web.Infrastructure
             return Mapper.Map<SubjectInfo, Areas.Admin.Models.Home.SubjectInfoModel>(entity);
         }
 
+        public static SubjectInfo ToEntity(this Areas.Admin.Models.Home.SubjectInfoModel model)
+        {
+            return Mapper.Map<Areas.Admin.Models.Home.SubjectInfoModel, SubjectInfo>(model);
+        }
+
         public static SubjectOptionModel ToModel(this SubjectOption entity)
         {
             return Mapper.Map<SubjectOption, SubjectOptionModel>(entity);
@@ -39,9 +44,19 @@ namespace Web.Infrastructure
             return Mapper.Map<SubjectOption, Areas.Admin.Models.Home.SubjectOptionModel>(entity);
         }
 
+        public static SubjectOption ToEntity(this Areas.Admin.Models.Home.SubjectOptionModel model)
+        {
+            return Mapper.Map<Areas.Admin.Models.Home.SubjectOptionModel, SubjectOption>(model);
+        }
+
         public static SubjectResultModel ToModel(this SubjectResult entity)
         {
             return Mapper.Map<SubjectResult, SubjectResultModel>(entity);
+        }
+
+        public static Areas.Admin.Models.Home.SubjectResultModel ToAdminModel(this SubjectResult entity)
+        {
+            return Mapper.Map<SubjectResult, Areas.Admin.Models.Home.SubjectResultModel>(entity);
         }
 
         public static PageModel<TModel> ToModel<TEntity, TModel>(this IPagedList<TEntity> entityList)

@@ -14,6 +14,8 @@ namespace Core.Domain
 
         public virtual SubjectInfo Subject { get; set; }
 
+        public virtual DateTime CreateOnUtc { get; set; }
+
         public virtual int ResultPictureId { get; set; }
 
         public virtual Picture ResultPicture { get; set; }

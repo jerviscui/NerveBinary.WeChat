@@ -70,17 +70,18 @@ namespace Web.Controllers
                         Subject = subject,
                         Key = name,
                         Options = new List<SubjectOption>(),
-                        ResultPictureId = subject.ResultPictureId
+                        ResultPictureId = subject.ResultPictureId,
+                        CreateOnUtc = DateTime.UtcNow
                     };
 
-                    var options = subject.Options;
+                    var options = subject.Options.Where(o => o.IsValid);
                     var group = options.GroupBy(o => o.ResultType);
                     foreach (var item in group)
                     {
                         result.Options.Add(item.ElementAt(random.Next(item.Count())));
                     }
 
-                    //create picture
+                    //todo create picture
 
                     _subjectResultService.Add(result);
                     

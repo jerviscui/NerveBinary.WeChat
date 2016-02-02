@@ -47,6 +47,11 @@ namespace WebService
             }
         }
 
+        public void Update(SubjectInfo model)
+        {
+            _subjectInfoRepository.Update(model);
+        }
+
         public void Delete(int subjectId)
         {
             var subject = _subjectInfoRepository.Table.FirstOrDefault(o => o.Id == subjectId);
@@ -57,6 +62,11 @@ namespace WebService
 
                 _subjectInfoRepository.Delete(subject);
             }
+        }
+
+        public void Create(SubjectInfo model)
+        {
+            _subjectInfoRepository.Add(model);
         }
     }
 }

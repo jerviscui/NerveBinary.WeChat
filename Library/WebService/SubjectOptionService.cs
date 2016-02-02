@@ -25,5 +25,25 @@ namespace WebService
 
             return new PagedList<SubjectOption>(query, pageIndex, pageSize);
         }
+
+        public void UpdateOption(SubjectOption model)
+        {
+            _subjectOptionRepository.Update(model);
+        }
+
+        public SubjectOption GetOptionById(int optionId)
+        {
+            return _subjectOptionRepository.Table.FirstOrDefault(o => o.Id == optionId && o.IsValid);
+        }
+
+        public void Hide(SubjectOption model)
+        {
+            _subjectOptionRepository.Hide(model);
+        }
+
+        public void CreateOption(SubjectOption model)
+        {
+            _subjectOptionRepository.Add(model);
+        }
     }
 }
