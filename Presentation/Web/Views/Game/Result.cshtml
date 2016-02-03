@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_GameResultLayout.cshtml";
 }
 
+<img src="@Model.PictureUrl" class="i-car" />
 <p class="i-result-desc">
     <span>@Model.ResultTitle</span>
     @if (Model.Options.Count == 1)
