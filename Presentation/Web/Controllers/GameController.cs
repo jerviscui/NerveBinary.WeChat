@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 using Core.Domain;
 using Web.Infrastructure;
 using Web.Models.Game;
@@ -25,6 +26,7 @@ namespace Web.Controllers
         }
 
         // GET: Game
+        [OutputCache(Duration = 60, VaryByParam = null, Location = OutputCacheLocation.Server)]
         public ActionResult Index()
         {
             var model = new List<SubjectInfoModel>();
