@@ -27,6 +27,9 @@ namespace Web
             DependencyRegister.Register();
 
             //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<EFDbContext>());
+
+            //remove X-ASPNETMVC-VERSION header
+            MvcHandler.DisableMvcResponseHeader = true;
         }
     }
 }
