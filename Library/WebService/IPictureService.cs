@@ -9,6 +9,6 @@ namespace WebService
 {
     public interface IPictureService
     {
-
+        void DeletePicture(Picture picture);
     }
 }
